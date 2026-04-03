@@ -3,8 +3,8 @@ from api.login_api import login
 import requests
 import pytest
 
-def test_login_success(auth_session):
-    response = login(auth_session, config.LOGIN_EMAIL, config.LOGIN_PASSWORD)
+def test_login_success(api_session):
+    response = login(api_session, config.LOGIN_EMAIL, config.LOGIN_PASSWORD)
     assert response.status_code == 200
     assert response.json().get("token") is not None
 
@@ -20,14 +20,14 @@ def test_login_no_auth():
     assert response.json().get("error") == "missing_api_key"
 
 @pytest.mark.parametrize("password", [None, ""])
-def test_login_no_password(auth_session, password):
-    response = login(auth_session, config.LOGIN_EMAIL, password)
+def test_login_no_password(api_session, password):
+    response = login(api_session, config.LOGIN_EMAIL, password)
     assert response.status_code == 400
     assert response.json().get("error") == "Missing password"
 
 
 @pytest.mark.parametrize("email", [None, ""])
-def test_login_no_email(auth_session, email):
-    response = login(auth_session, email, config.LOGIN_PASSWORD)
+def test_login_no_email(api_session, email):
+    response = login(api_session, email, config.LOGIN_PASSWORD)
     assert response.status_code == 400
     assert response.json().get("error") == "Missing email or username"
