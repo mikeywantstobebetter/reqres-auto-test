@@ -15,3 +15,5 @@ def register(session, email, password):
     }
     response = session.post(f"{config.BASE_URL}/api/register",json = data)
     return response
+
+
