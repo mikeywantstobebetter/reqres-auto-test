@@ -10,7 +10,6 @@ def test_login_success(api_session):
 
 
 def test_login_no_auth():
-    headers = None
     json_data = {
     "email": "eve.holt@reqres.in",
     "password": "cityslicka"
