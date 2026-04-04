@@ -6,7 +6,7 @@ import config
 
 
 def test_register_success(api_session):
-    response = register(api_session, config.LOGIN_EMAIL, config.LOGIN_PASSWORD)
+    response = register(api_session, config.LOGIN_EMAIL, config.REGISTER_PASSWORD)
     assert response.status_code == 200
     assert response.json().get("id") is not None
     assert response.json().get("token") is not None
